@@ -54,7 +54,7 @@ a -> b & <-> c
          ^  
 ```
 # DIMACS CNF files
-When given a CNF DIMACS file, the file is assumed to follow the following format.
+When given a DIMACS CNF file, the file is assumed to follow the following format.
 - Each line starts with either `p`, `c`, `-` or a digit.
 - Lines starting with `c` are comments, and lines starting with `p` are the "problem lines" that record, for example, the size of the problem. Lines starting with `c` and `p` are optional.
 - The other lines represent clauses. Each such line consists of integers separated by spaces where the integers represent literals. Positive integers represent variables and negative integers represent negations of variables.

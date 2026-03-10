@@ -1,8 +1,14 @@
 # About
 This is a personal learning project where I implemented a [CDCL](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning) based [SAT-solver](https://en.wikipedia.org/wiki/SAT_solver) with [2-watched literals](https://www.youtube.com/watch?v=n3e-f0vMHz8). For parsing logical formulas, the project also implements a [recursive descent parser](https://www.cs.rochester.edu/u/nelson/courses/csc_173/grammars/parsing.html) for propositional logic. As an application of the SAT-solver, the project includes an automatic sudoku solver.
 
-# Basic features
-Depending on the shell you're using, you may want to enclose the formula in single quotes `' '` instead of double quotes `" "`.
+# Usage
+three things you can do
+## Arbitrary formulas
+To check the satisfiability of an arbitrary formula: `python3 main.py formula '<formula>'` where `<formula>` is the given formula as a string (see below for the syntax of formulas).
+  
+For example: `python3 main.py formula '(a -> b) & a -> a'`.
+
+**Note:** Depending on the shell you're using, you may want to enclose the formula in single quotes `' '` instead of double quotes `" "`.
 
 # Syntax for formulas
 When giving propositional formulas as input, the following syntax is assumed.
@@ -20,7 +26,7 @@ When giving propositional formulas as input, the following syntax is assumed.
 
 Some examples of formulas: 
 - `[it has rained] -> [ground is wet] <-> ~[ground is wet] -> ~[it has rained]`
-- `(A -> T) -> (~B -> F)`
+- `(A -> T) -> (~A -> F)`
 - `(A <-> ~~A) -> [unconstructive!]`
 - `[X = 100] -> [X != 101]`
 

@@ -133,11 +133,12 @@ If the input formula has atomic formulas `T` or `F` as subformulas, these subfor
 Before running the CDCL algorithm, as preprocessing, we remove all clauses with `T` in them and remove `F` from every clause.
 The resolution proof is computed from this preprocessed set of clauses.
 
-Similarly, when a `.cnf` or a sudoku file is given and the formula/sudoku is not satisfiable, a prompt asks if the user wants to see the resolution proof.
-If the user types `y`, only the proof is printed.
+Similarly, when a `.cnf` or a sudoku file is given and the formula/sudoku is not satisfiable, a prompt asks if the user wants to see the resolution proof, and the proof is printed when answered `y`.
 
 **Note:** The resolution proofs can be quite long. 
 For example, the CNF formula in the file `hole6.cnf` is not satisfiable and the proof has 4604 lines.
+The lines in the proof are padded with spaces so that the comment column is aligned.
+If the clauses in the proof are very long, the output may not be as readable.
 
 
 

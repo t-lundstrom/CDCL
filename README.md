@@ -14,17 +14,17 @@ To check the satisfiability of an arbitrary formula, run `python3 main.py formul
 For example: `python3 main.py formula '(a -> b) & a -> b'`.
 
 To check the satisfiability of a CNF (conjunctive normal form) formula given as a DIMACS CNF file, run 
-`python3 main.py cnf <file>` where `<file>` is the name of the file (see below for the assumed file format). 
+`python3 main.py cnf <file>` where `<file>` is the name of the file (see below for more about the file format). 
 For example: `python3 main.py cnf hole6.cnf`
 
 To solve a sudoku, run 
-`python3 main.py sudoku <file>` where `<file>` is the given sudoku file (see below for the assumed file format).
+`python3 main.py sudoku <file>` where `<file>` is the given sudoku file (see below for more about the file format).
 For example: `python3 main.py sudoku sudoku_example.txt`
 
 # Installing/Running
 Download all files into the same directory and run your python interpreter with arguments as shown above. The only dependency is the standard python library.
 
-# Syntax for formulas
+# Syntax of formulas
 When giving propositional formulas as input, the following syntax is assumed.
 - Variables can be any alphabetic characters **except** `v`, `T` and `F`. To create longer variable symbols, a string  can be enclosed inside square brackets, e.g. `[some text]`.
 - The letter `T` is used for the atomic formula "True", and `F` is used for the atomic formula "False".
@@ -54,13 +54,21 @@ Expected '(', VAR, '~', 'T' or 'F' but got '<->' instead.
 a -> b & <-> c  
          ^  
 ```
-# .CNF files
+# DIMACS CNF files
+When given a CNF DIMACS file, the file is assumed to follow the following format.
+- Each line starts with either `p`, `c`, `-` or a digit.
+- Lines starting with `c` are comments, and lines starting with `p` are the "problem lines" that record, for example, the size of the problem. Lines starting with `c` and `p` are optional.
+- The other lines represent clauses. Each such line consist of integers separated by spaces where the integers represent literals. Positive integers represent variables and negative integers represent negations of variables.
+- Each clause line ends with a `0` representing the end of the clause (these are not strictly necessary in this project).
+ In this project, **each clause needs be on one line** and **no two clauses can be on the same line**.
+
+The file `hole6.cnf` shows an example of such a file.
 
 # Solving sudokus
 
 
 # Further details
-
+Tseitin set, subformula labels, resolution proof, etc.
 
 
 

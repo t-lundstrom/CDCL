@@ -4,19 +4,26 @@
 
 This is a personal learning project where I implemented a [CDCL](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning) based [SAT-solver](https://en.wikipedia.org/wiki/SAT_solver) with [2-watched literals](https://www.youtube.com/watch?v=n3e-f0vMHz8). For parsing logical formulas, the project also implements a [recursive descent parser](https://www.cs.rochester.edu/u/nelson/courses/csc_173/grammars/parsing.html) for propositional logic. As an application of the SAT-solver, the project includes an automatic sudoku solver. In addition to checking if a given formula is satisfiable, the CDCL solver also builds a [resolution proof](https://en.wikipedia.org/wiki/Resolution_(logic)) if the formula is not satisfiable.
 
-# Usage
+# Basic usage
 three things you can do
 ## Arbitrary formulas
-To check the satisfiability of an arbitrary formula: `python3 main.py formula '<formula>'` where `<formula>` is the given formula as a string (see below for the syntax of formulas).
+To check the satisfiability of an arbitrary formula: `python3 main.py formula '<formula>'` where `<formula>` is the given formula (see below for the syntax of formulas).
   
-Example: `python3 main.py formula '(a -> b) & a -> a'`.
+**Example**: `python3 main.py formula '(a -> b) & a -> a'`.
 
-**Note:** Depending on the shell you're using, you may want to enclose the formula in single quotes `' '` instead of double quotes `" "`.
 
 ## CNF files
-The program can read dimacs files (todo: explain): `python3 main.py cnf <file>` where `<file>` is the name of the file. 
+To check the satisfiability of a CNF (conjunctive normal form) formula given as a DIMACS file: `python3 main.py cnf <file>` where `<file>` is the name of the file (see below for the file format).
 
-Example: `python3 main.py cnf hole6.cnf`
+**Example**: `python3 main.py cnf hole6.cnf`
+
+## Sudokus
+To solve a sudoku: `python3 main.py sudoku <file>` where `<file>` is the given sudoku file (see below for the file format)
+
+**Exampl**e: `python3 main.py sudoku sudoku_example.txt`
+
+# Installing/Running
+Download all files into a directory and run your python interpreter with arguments as shown above. The only dependency is the standard python library.
 
 # Syntax for formulas
 When giving propositional formulas as input, the following syntax is assumed.
@@ -37,6 +44,22 @@ Some examples of formulas:
 - `(A -> T) -> (~A -> F)`
 - `(A <-> ~~A) -> [unconstructive!]`
 - `[X = 100] -> [X != 101]`
+
+If the given formula does not match this syntax, a scanning/parsing error occurs and the first occurrence of an error is highlighted.
+
+**Example:** `python3 main.py formula 'a -> b & <->'` outputs 
+```
+Parsing error!
+Expected '(', VAR, '~', 'T' or 'F' but got '<->' instead. 
+
+a -> b & <->  
+         ^ 
+```
+
+
+# Further details
+
+
 
 
 # References

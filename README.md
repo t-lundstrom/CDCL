@@ -5,8 +5,8 @@ This is a personal learning project where I implemented a [CDCL](https://en.wiki
 The goal was to understand how modern SAT-solvers work and to learn how to implement them.
 
 For parsing logical formulas, the project also implements a [recursive descent parser](https://www.cs.rochester.edu/u/nelson/courses/csc_173/grammars/parsing.html) for propositional logic. 
-As an application of the SAT-solver, the project includes an automatic sudoku solver.
 In addition to checking if a given formula is satisfiable, the CDCL solver also builds a [resolution proof](https://en.wikipedia.org/wiki/Resolution_(logic)) if the formula is not satisfiable.
+As an application of the SAT-solver, the project includes an automatic sudoku solver.
 
 The file `background.pdf` gives a more detailed explanation of the theoretical background and an overview of the CDCL algorithm implemented here.
 

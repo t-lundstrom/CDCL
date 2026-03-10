@@ -388,5 +388,8 @@ if __name__ == '__main__':
         case 'formula':
             input_string = sys.argv[2]
             solve_formula(input_string)
+        
+        case _:
+            print(f"Unknown command: {mode}")
             
         

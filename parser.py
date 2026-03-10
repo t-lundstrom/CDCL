@@ -170,7 +170,7 @@ class Parser:
         if self._at_end():
             message = f"Expected {expected}. Formula ended unexpectedly."
         else:
-            message = f"Expected {expected} but got {self._current_token.lexeme} instead."
+            message = f"Expected {expected} but got '{self._current_token.lexeme}' instead."
 
         raise ParseError(message,error_pos)    
  

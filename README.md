@@ -11,7 +11,7 @@ The file `background.pdf` gives a more detailed explanation of the theoretical b
 
 # Basic usage
 To check the satisfiability of an arbitrary formula, run `python3 main.py formula '<formula>'` where `<formula>` is the given formula (see below for the syntax of formulas). 
-For example: `python3 main.py formula '(a -> b) & a -> b'`.
+For example: `python3 main.py formula '(a -> b) & a -> b'`
 
 To check the satisfiability of a CNF (conjunctive normal form) formula given as a DIMACS CNF file, run 
 `python3 main.py cnf <file>` where `<file>` is the name of the file (see below for more about the file format). 
@@ -72,11 +72,13 @@ When given a sudoku file, the file is assumed to be a plain text file that uses 
 The file `sudoku_example.txt` gives an example of such a file.
 
 
-# Further features
+# Resolution proofs
+See the file `background.pdf` for more details not explained here.
+
 When a propositional formula is given, an equisatisfiable CNF formula is first computed (the so called Tseitin set).
 There, each subformula of the original formula is given a new variable (an integer) and from those variables a CNF formula is computed.
-If the computed CNF formula is not satisfiable, a prompt asks is the user wants to see a resolution proof of the unsatisfiability of the formula CNF formula (and hence a proof of the unsatisfiability of the orignal formula).
-If the user answers `y` the program prints the label for each subformula, the Tseitin set and a resolution proof ending in the empty clause.
+If the computed CNF formula is not satisfiable, a prompt asks is the user wants to see a resolution proof of the unsatisfiability of the CNF formula (and hence a proof of the unsatisfiability of the orignal formula).
+If the user answers `y` the program prints the labels for each subformula, the Tseitin set and a resolution proof ending in the empty clause.
 
 For example, with `python3 main.py formula 'a & (a -> b) & ~b'` we get 
 ```
@@ -124,10 +126,13 @@ Resolution proof (with 'T' and 'F' possibly removed)
 14:          Res(13,8,3)
 ```
 The resolution proof consists of a sequence of clauses, each on its own line. 
-The comment at the end of the line shows whether the clause is one of the original clauses of the formula given to the CDCL algorithm, or is the line is obtained via resolution from clauses earlier in the proof.
-The comment `Res(i,j,k)` means that the clause on that line is obtained by resolution from clauses on lines `i` and `j` with respect to the the variable `k`.
+The comment at the end of the line shows whether the clause on that line is one of the original clauses of the CNF formula, or if the clause is obtained via resolution from clauses earlier in the proof.
+The comment `Res(i,j,k)` means that the clause on that line is obtained by resolution from clauses on lines `i` and `j` with respect to the variable `k`.
 
+Similarly, when a `.cnf` or a sudoku file is given and the formula/sudoku is not satisfiable, a prompt asks if the user wants to see the resolution proof.
 
+**Note:** The resolution proofs can be quite long. 
+For example, the CNF formula in the file `hole6.cnf` is not satisfiable and the proof has 4604 lines.
 
 
 

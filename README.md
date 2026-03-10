@@ -13,7 +13,7 @@ Example: `python3 main.py formula '(a -> b) & a -> a'`.
 ## CNF files
 The program can read dimacs files (todo: explain): `python3 main.py cnf <file>` where `<file>` is the name of the file. 
 
-Example: `python3 main.py formula hole6.cnf`
+Example: `python3 main.py cnf hole6.cnf`
 
 # Syntax for formulas
 When giving propositional formulas as input, the following syntax is assumed.

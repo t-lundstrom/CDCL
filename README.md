@@ -1,6 +1,5 @@
 # About
 
-**Under construction**
 
 This is a personal learning project where I implemented a [CDCL](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning) based [SAT-solver](https://en.wikipedia.org/wiki/SAT_solver) with [2-watched literals](https://www.youtube.com/watch?v=n3e-f0vMHz8). 
 For parsing logical formulas, the project also implements a [recursive descent parser](https://www.cs.rochester.edu/u/nelson/courses/csc_173/grammars/parsing.html) for propositional logic. 
@@ -63,6 +62,7 @@ When given a CNF DIMACS file, the file is assumed to follow the following format
  In this project, **each clause needs be on one line** and **no two clauses can be on the same line**.
 
 The file `hole6.cnf` shows an example of such a file.
+It was taken from [here](https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html).
 
 # Sudoku files
 When given a sudoku file, the file is assumed to be a plain text file that uses the following format.
@@ -129,7 +129,12 @@ The resolution proof consists of a sequence of clauses, each on its own line.
 The comment at the end of the line shows whether the clause on that line is one of the original clauses of the CNF formula, or if the clause is obtained via resolution from clauses earlier in the proof.
 The comment `Res(i,j,k)` means that the clause on that line is obtained by resolution from clauses on lines `i` and `j` with respect to the variable `k`.
 
+If the input formula has atomic formulas `T` or `F` as subformulas, these subformulas are not given labels and hence appear as such in the Tseitin set.
+Before running the CDCL algorithm, as preprocessing, we remove all clauses with `T` in them and remove `F` from every clause.
+The resolution proof is computed from this preprocessed set of clauses.
+
 Similarly, when a `.cnf` or a sudoku file is given and the formula/sudoku is not satisfiable, a prompt asks if the user wants to see the resolution proof.
+If the user types `y`, only the proof is printed.
 
 **Note:** The resolution proofs can be quite long. 
 For example, the CNF formula in the file `hole6.cnf` is not satisfiable and the proof has 4604 lines.

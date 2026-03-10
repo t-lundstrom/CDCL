@@ -7,7 +7,7 @@ For parsing logical formulas, the project also implements a [recursive descent p
 As an application of the SAT-solver, the project includes an automatic sudoku solver.
 In addition to checking if a given formula is satisfiable, the CDCL solver also builds a [resolution proof](https://en.wikipedia.org/wiki/Resolution_(logic)) if the formula is not satisfiable.
 
-The file `background.pdf` gives a more detailed explanation of the theoretical background and an overview of the CDCL algorithm.
+The file `background.pdf` gives a more detailed explanation of the theoretical background and an overview of the CDCL algorithm implemented here.
 
 # Basic usage
 To check the satisfiability of an arbitrary formula, run `python3 main.py formula '<formula>'` where `<formula>` is the given formula (see below for the syntax of formulas). 
@@ -72,8 +72,62 @@ When given a sudoku file, the file is assumed to be a plain text file that uses 
 The file `sudoku_example.txt` gives an example of such a file.
 
 
-# Further details
-Tseitin set, subformula labels, resolution proof, etc.
+# Further features
+When a propositional formula is given, an equisatisfiable CNF formula is first computed (the so called Tseitin set).
+There, each subformula of the original formula is given a new variable (an integer) and from those variables a CNF formula is computed.
+If the computed CNF formula is not satisfiable, a prompt asks is the user wants to see a resolution proof of the unsatisfiability of the formula CNF formula (and hence a proof of the unsatisfiability of the orignal formula).
+If the user answers `y` the program prints the label for each subformula, the Tseitin set and a resolution proof ending in the empty clause.
+
+For example, with `python3 main.py formula 'a & (a -> b) & ~b'` we get 
+```
+Starting CDCL with 6 variables and 12 clauses
+Formula is not sat
+Print proof (y/n)?
+```
+Typing `y` then prints
+```
+Subformula labels:
+1: ((a&(a->b))&~b)
+2: (a&(a->b))
+3: a
+4: (a->b)
+5: b
+6: ~b
+Tseitin set:
+[1]
+[-1, 2]
+[-1, 6]
+[1, -2, -6]
+[-2, 3]
+[-2, 4]
+[2, -3, -4]
+[-4, -3, 5]
+[4, 3]
+[4, -5]
+[6, 5]
+[-6, -5]
+Resolution proof (with 'T' and 'F' possibly removed)
+0: 1         Original clause
+1: -1 6      Original clause
+2: 6         Res(1,0,1)
+3: 2 -1      Original clause
+4: 2         Res(3,0,1)
+5: -6 -5     Original clause
+6: -5        Res(5,2,6)
+7: 3 -2      Original clause
+8: 3         Res(7,4,2)
+9: 4 -2      Original clause
+10: 4        Res(9,4,2)
+11: 5 -4 -3  Original clause
+12: -4 -3    Res(11,6,5)
+13: -3       Res(12,10,4)
+14:          Res(13,8,3)
+```
+The resolution proof consists of a sequence of clauses, each on its own line. 
+The comment at the end of the line shows whether the clause is one of the original clauses of the formula given to the CDCL algorithm, or is the line is obtained via resolution from clauses earlier in the proof.
+The comment `Res(i,j,k)` means that the clause on that line is obtained by resolution from clauses on lines `i` and `j` with respect to the the variable `k`.
+
+
 
 
 

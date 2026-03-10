@@ -46,7 +46,7 @@ Some examples of formulas:
 
 If the given formula does not match this syntax, a scanning/parsing error is raised and the first occurrence of an error is highlighted.
 
-**Example:** `python3 main.py formula 'a -> b & <-> c'` outputs 
+For example, `python3 main.py formula 'a -> b & <-> c'` outputs 
 ```
 Parsing error!
 Expected '(', VAR, '~', 'T' or 'F' but got '<->' instead. 
@@ -58,13 +58,18 @@ a -> b & <-> c
 When given a CNF DIMACS file, the file is assumed to follow the following format.
 - Each line starts with either `p`, `c`, `-` or a digit.
 - Lines starting with `c` are comments, and lines starting with `p` are the "problem lines" that record, for example, the size of the problem. Lines starting with `c` and `p` are optional.
-- The other lines represent clauses. Each such line consist of integers separated by spaces where the integers represent literals. Positive integers represent variables and negative integers represent negations of variables.
+- The other lines represent clauses. Each such line consists of integers separated by spaces where the integers represent literals. Positive integers represent variables and negative integers represent negations of variables.
 - Each clause line ends with a `0` representing the end of the clause (these are not strictly necessary in this project).
  In this project, **each clause needs be on one line** and **no two clauses can be on the same line**.
 
 The file `hole6.cnf` shows an example of such a file.
 
-# Solving sudokus
+# Sudoku files
+When given a sudoku file, the file is assumed to be a plain text file that uses the following format.
+- The file has exactly 9 lines and each line has exactly 9 characters.
+- Each character is either `.`, which represents an empty square, or a digit 1-9, which represents the fixed number in the corresponding square.
+
+The file `sudoku_example.txt` gives an example of such a file.
 
 
 # Further details

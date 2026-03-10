@@ -1,12 +1,33 @@
+**Work in progress**
+
 # About
+This is a personal learning project where I implemented a [CDCL](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning) based [SAT-solver](https://en.wikipedia.org/wiki/SAT_solver) from scratch in python. 
+The goal was to understand how modern SAT-solvers work and to learn how to implement them.
 
-
-This is a personal learning project where I implemented a [CDCL](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning) based [SAT-solver](https://en.wikipedia.org/wiki/SAT_solver) with [2-watched literals](https://www.youtube.com/watch?v=n3e-f0vMHz8). 
 For parsing logical formulas, the project also implements a [recursive descent parser](https://www.cs.rochester.edu/u/nelson/courses/csc_173/grammars/parsing.html) for propositional logic. 
 As an application of the SAT-solver, the project includes an automatic sudoku solver.
 In addition to checking if a given formula is satisfiable, the CDCL solver also builds a [resolution proof](https://en.wikipedia.org/wiki/Resolution_(logic)) if the formula is not satisfiable.
 
 The file `background.pdf` gives a more detailed explanation of the theoretical background and an overview of the CDCL algorithm implemented here.
+
+# Features
+Implemented features of the CDCL algorithm:
+- Unit propagation with 2-watched literals
+- 1-UIP clause learning
+- non-chronological backtracking
+- a resolution proof engine
+
+Some missing features that might be implemented in the future: decision heuristics (e.g. VSIDS), clause deletion, restart strategies.
+
+# Benchmarks
+This is mainly an educational project.
+The solver is not intended to compete with other highly optimized solvers.
+Benchmark results...
+
+# Overview
+Formula -> parser -> syntax tree -> Tseitin set -> Pre-processing -> CDCL -> a satisfying assignment or a resolution proof of unsatisfiability.
+
+  
 
 # Basic usage
 To check the satisfiability of an arbitrary formula, run `python3 main.py formula '<formula>'` where `<formula>` is the given formula (see below for the syntax of formulas). 

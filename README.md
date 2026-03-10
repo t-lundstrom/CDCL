@@ -7,14 +7,19 @@ For parsing logical formulas, the project also implements a [recursive descent p
 As an application of the SAT-solver, the project includes an automatic sudoku solver.
 In addition to checking if a given formula is satisfiable, the CDCL solver also builds a [resolution proof](https://en.wikipedia.org/wiki/Resolution_(logic)) if the formula is not satisfiable.
 
-The file `background.pdf` gives a more detailed explanation of the theoretical background.
+The file `background.pdf` gives a more detailed explanation of the theoretical background and an overview of the CDCL algorithm.
 
 # Basic usage
-To check the satisfiability of an arbitrary formula, run `python3 main.py formula '<formula>'` where `<formula>` is the given formula (see below for the syntax of formulas). For example: `python3 main.py formula '(a -> b) & a -> b'`.
+To check the satisfiability of an arbitrary formula, run `python3 main.py formula '<formula>'` where `<formula>` is the given formula (see below for the syntax of formulas). 
+For example: `python3 main.py formula '(a -> b) & a -> b'`.
 
-To check the satisfiability of a CNF (conjunctive normal form) formula given as a DIMACS file, run `python3 main.py cnf <file>` where `<file>` is the name of the file (see below for the assumed file format). For example: `python3 main.py cnf hole6.cnf`
+To check the satisfiability of a CNF (conjunctive normal form) formula given as a DIMACS CNF file, run 
+`python3 main.py cnf <file>` where `<file>` is the name of the file (see below for the assumed file format). 
+For example: `python3 main.py cnf hole6.cnf`
 
-To solve a sudoku, run `python3 main.py sudoku <file>` where `<file>` is the given sudoku file (see below for the assumed file format). For example: `python3 main.py sudoku sudoku_example.txt`
+To solve a sudoku, run 
+`python3 main.py sudoku <file>` where `<file>` is the given sudoku file (see below for the assumed file format).
+For example: `python3 main.py sudoku sudoku_example.txt`
 
 # Installing/Running
 Download all files into the same directory and run your python interpreter with arguments as shown above. The only dependency is the standard python library.
@@ -41,13 +46,13 @@ Some examples of formulas:
 
 If the given formula does not match this syntax, a scanning/parsing error is raised and the first occurrence of an error is highlighted.
 
-**Example:** `python3 main.py formula 'a -> b & <->'` outputs 
+**Example:** `python3 main.py formula 'a -> b & <-> c'` outputs 
 ```
 Parsing error!
 Expected '(', VAR, '~', 'T' or 'F' but got '<->' instead. 
 
-a -> b & <->  
-         ^ 
+a -> b & <-> c  
+         ^  
 ```
 # .CNF files
 

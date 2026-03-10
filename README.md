@@ -56,7 +56,7 @@ When giving propositional formulas as input, the following syntax is assumed.
   - `~`   negation (not)
 - Formulas can be grouped with parenthesis `( )`.
 - The following precedence is assumed (from lowest to highest): equivalence, implication, disjunction, conjunction, negation, parenthesis. For example, `a -> b <-> ~c v a & b` is parsed as `(a -> b) <-> (~c v (a & b))`.
-- The binary connectives are left associative. For example, `a & b & c` is parsed as `(a & b) & c`.
+- The binary connectives are left-associative. For example, `a & b & c` is parsed as `(a & b) & c`.
 
 Some examples of formulas: 
 - `[it has rained] -> [ground is wet] <-> ~[ground is wet] -> ~[it has rained]`

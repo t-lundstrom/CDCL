@@ -29,7 +29,7 @@ The tests were run on an M1 macbook air.
 
 | Clauses | Variables | Total runtime for 100 instances           | Number of SAT/UNSAT
 | --------|-----------|-------------------------------------------| --------------------------| 
-| 1000    | 50        | 8.002s                                    | 29 SAT, 71 UNSAT
+| 1000    | 50        | 8.022s                                    | 29 SAT, 71 UNSAT
 | 1100    | 55        | 19.759s                                   | 40 SAT, 60 UNSAT
 | 1200    | 60        | 36.087s                                   | 28 SAT, 72 UNSAT
 | 1300    | 65        | 68.127s                                   | 34 SAT, 66 UNSAT
@@ -49,7 +49,7 @@ To solve a sudoku, run
 `python3 main.py sudoku <file>` where `<file>` is the given sudoku file (see below for more about the file format).
 For example: `python3 main.py sudoku sudoku_example.txt`
 
-To solve random instances, run
+To test the solver with random instances, run
 `python main.py test`.
 The default test is to solve 100 random CNF formulas, where each instance has 1000 clauses, 50 variables and clauses have 3 to 10 literals.
 These settings can be changed in the source code.

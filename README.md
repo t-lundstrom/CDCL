@@ -98,8 +98,7 @@ When given a DIMACS CNF file, the file is assumed to follow the following format
 - Each clause line ends with a `0` representing the end of the clause (these are not strictly necessary in this project).
  In this project, **each clause needs to be on one line** and **no two clauses can be on the same line**.
 
-The file `hole6.cnf` shows an example of such a file.
-It was taken from [here](https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html).
+The file `hole6.cnf` shows an example of such a file, which was take from [here](https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html).
 
 # Sudoku files
 When given a sudoku file, the file is assumed to be a plain text file that uses the following format.

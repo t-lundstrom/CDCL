@@ -414,6 +414,6 @@ if __name__ == '__main__':
             run_tests()
         
         case _:
-            print(f"Unknown command: {mode}")
+            print(f"Unknown command: {mode}. The second argument should be one of: formula, cnf, sudoku, test")
             
         

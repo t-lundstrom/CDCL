@@ -6,7 +6,7 @@ For parsing logical formulas, the project also implements a [recursive descent p
 In addition to checking if a given formula is satisfiable, the CDCL solver also builds a [resolution proof](https://en.wikipedia.org/wiki/Resolution_(logic)) if the formula is not satisfiable.
 As an application of the SAT-solver, the project includes a Sudoku solver.
 
-The file `background.pdf` gives a more detailed explanation of the theoretical background and an overview of the CDCL algorithm implemented here.
+The file `documentation.pdf` gives a more detailed explanation of the theoretical background and implementation details of the CDCL algorithm that we implement here.
 
 # Features
 Implemented features of the CDCL algorithm:
@@ -109,7 +109,7 @@ The file `sudoku_example.txt` gives an example of such a file.
 
 
 # Resolution proofs
-See the file `background.pdf` for more details not explained here.
+See the file `documentation.pdf` for more details not explained here.
 
 When a propositional formula is given, an equisatisfiable CNF formula is first computed (the so called Tseitin set).
 There, each subformula of the original formula is given a new variable (an integer) and from those variables a CNF formula is computed.
@@ -144,7 +144,7 @@ Tseitin set:
 [4, -5]
 [6, 5]
 [-6, -5]
-Resolution proof (with 'T' and 'F' possibly removed)
+Resolution proof from preprocessed clauses:
 0: 1         Original clause
 1: -1 6      Original clause
 2: 6         Res(1,0,1)
@@ -167,6 +167,7 @@ The comment `Res(i,j,k)` means that the clause on that line is obtained by resol
 
 If the input formula has atomic formulas `T` or `F` as subformulas, these subformulas are not given labels and hence appear as such in the Tseitin set.
 Before running the CDCL algorithm, as preprocessing, we remove all clauses with `T` in them and remove `F` from every clause.
+In addition, we remove duplicate literals from clauses, we remove duplicate clauses, and we remove all tautological clauses, which are clauses that contain some literal and its negation.
 The resolution proof is computed from this preprocessed set of clauses.
 
 Similarly, when a `.cnf` or a sudoku file is given and the formula/sudoku is not satisfiable, a prompt asks if the user wants to see the resolution proof.
@@ -183,5 +184,5 @@ If the clauses in the proof are very long, the output may not be as readable.
 - https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html
 - https://www.cs.princeton.edu/~zkincaid/courses/fall18/readings/SATHandbook-CDCL.pdf
 - https://kienyew.github.io/CDCL-SAT-Solver-from-Scratch/
-- https://craftinginterpreters.com/introduction.html
+- https://craftinginterpreters.com
 

@@ -374,7 +374,7 @@ def solve_formula(input_string):
             print("Tseitin set:")
             for c in tseitin_set:
                 print(c)
-            print("Resolution proof (with 'T' and 'F' possibly removed)")
+            print("Resolution proof from preprocessed clauses:")
             for line in proof.formatted_lines():
                 print(line)
 

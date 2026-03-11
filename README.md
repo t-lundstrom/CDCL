@@ -12,7 +12,7 @@ The file `background.pdf` gives a more detailed explanation of the theoretical b
 
 # Features
 Implemented features of the CDCL algorithm:
-- Unit propagation with 2-watched literals
+- Unit propagation with [2-watched literals](https://www.youtube.com/watch?v=n3e-f0vMHz8)
 - 1-UIP clause learning
 - non-chronological backtracking
 - a resolution proof engine
@@ -22,12 +22,20 @@ Some missing features that might be implemented in the future: decision heuristi
 # Benchmarks
 This is mainly an educational project.
 The solver is not intended to compete with other highly optimized solvers.
-Benchmark results...
+However, here are some benchmarks with random instances. 
+In each test, the solver solved 100 random CNF formulas where each clause had 3 to 10 literals.
+Total runtime is the runtime for 100 instances.
+The tests were run on an M1 macbook air.
 
-# Overview
-Formula -> parser -> syntax tree -> Tseitin set -> Pre-processing -> CDCL -> a satisfying assignment or a resolution proof of unsatisfiability.
+| Clauses | Variables | Total runtime for 100 instances           | Number of SAT/UNSAT
+| --------|-----------|-------------------------------------------| --------------------------| 
+| 1000    | 50        | 8.002s                                    | 29 SAT, 71 UNSAT
+| 1100    | 55        | 19.759s                                   | 40 SAT, 60 UNSAT
+| 1200    | 60        | 36.087s                                   | 28 SAT, 72 UNSAT
+| 1300    | 65        | 68.127s                                   | 34 SAT, 66 UNSAT
 
-  
+
+
 
 # Basic usage
 To check the satisfiability of an arbitrary formula, run `python3 main.py formula '<formula>'` where `<formula>` is the given formula (see below for the syntax of formulas). 
@@ -40,6 +48,15 @@ For example: `python3 main.py cnf hole6.cnf`
 To solve a sudoku, run 
 `python3 main.py sudoku <file>` where `<file>` is the given sudoku file (see below for more about the file format).
 For example: `python3 main.py sudoku sudoku_example.txt`
+
+To solve random instances, run
+`python main.py test`.
+The default test is to solve 100 random CNF formulas, where each instance has 1000 clauses, 50 variables and clauses have 3 to 10 literals.
+These settings can be changed in the source code.
+
+
+**Note:** Currently, the program does not check if the given .cnf or sudoku file follow the assumed format.
+If the given files does not follow the assumed format, unexpected behaviour might occur.
 
 # Installing/Running
 Download all files into the same directory and run your python interpreter with arguments as shown above. The only dependency is the standard python library.
@@ -88,7 +105,7 @@ It was taken from [here](https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html)
 # Sudoku files
 When given a sudoku file, the file is assumed to be a plain text file that uses the following format.
 - The file has exactly 9 lines and each line has exactly 9 characters.
-- Each character is either `.`, which represents an empty square, or a digit 1-9, which represents the fixed number in the corresponding square.
+- Each character is either `.`, which represents an empty square, or a digit `1-9`, which represents the fixed number in the corresponding square.
 
 The file `sudoku_example.txt` gives an example of such a file.
 

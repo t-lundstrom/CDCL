@@ -109,7 +109,7 @@ The file `sudoku_example.txt` gives an example of such a file.
 
 
 # Resolution proofs
-See the file `background.pdf` for more details not explained here.
+See the file `documentation.pdf` for more details not explained here.
 
 When a propositional formula is given, an equisatisfiable CNF formula is first computed (the so called Tseitin set).
 There, each subformula of the original formula is given a new variable (an integer) and from those variables a CNF formula is computed.

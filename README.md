@@ -184,5 +184,5 @@ If the clauses in the proof are very long, the output may not be as readable.
 - https://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html
 - https://www.cs.princeton.edu/~zkincaid/courses/fall18/readings/SATHandbook-CDCL.pdf
 - https://kienyew.github.io/CDCL-SAT-Solver-from-Scratch/
-- https://craftinginterpreters.com/introduction.html
+- https://craftinginterpreters.com
 

@@ -25,7 +25,7 @@ The solver is not intended to compete with other highly optimized solvers.
 However, here are some benchmarks with random instances. 
 In each test, the solver solved 100 random CNF formulas where each clause had 3 to 10 literals.
 Total runtime is the runtime for 100 instances.
-The tests were run on an M1 macbook air.
+The tests were run on an M1 Macbook Air.
 
 | Clauses | Variables | Total runtime for 100 instances           | Number of SAT/UNSAT
 | --------|-----------|-------------------------------------------| --------------------------| 

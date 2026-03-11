@@ -17,7 +17,7 @@ class Proof:
         if clause not in self.line_numbers.keys():
             line_number = self.next_line_number()
             self.line_numbers[clause] = line_number
-            pl = ProofLine(line_number,clause,"Original clause") # in this case we know 'clause' must be among the original clauses, see Section 3.5 of the pdf.
+            pl = ProofLine(line_number,clause,"Original clause") # in this case we know 'clause' must be among the original clauses, see Remark 3 of documentation.pdf
             self.proof_lines.append(pl)
 
     def next_line_number(self):
@@ -27,7 +27,7 @@ class Proof:
 
     def resolution(self,clause1,clause2,literal):
         res = frozenset([x for x in list(clause1) + list(clause2) if x not in [literal,-literal]])
-        if res not in self.line_numbers.keys(): # it could be that the clause obtained by resolution is already in the proof. In that case, there's no need to add it there again.
+        if res not in self.line_numbers.keys(): # if 'res' is already in the proof, we don't add it again
             new_line_number = self.next_line_number()
             self.line_numbers[res] = new_line_number
             line1 = self.line_numbers[frozenset(clause1)] 
@@ -51,10 +51,10 @@ class Proof:
 
 class Trail:
     def __init__(self):
-        self.trail = [] # here 'trail' will consist of unannotated literals
-        self.level = {}
+        self.trail = [] # Here 'trail' will consist of unannotated literals i.e. integers
+        self.level = {} # Gives the level for each literal
         self.reason = {} # Gives the reason clause for each literal in the trail. For decision literals this will be None.
-        self.assignment = {} # the truth assignment corresponding to the trail.
+        self.assignment = {} # The truth assignment corresponding to the trail.
         self.current_level = 0
     
     def add_to_trail(self,lit,reason_clause):
@@ -121,7 +121,7 @@ def unit_propagation(trail,proof,watched_in_clauses,watched_literals,to_propagat
 
         if reason != None and trail.current_level == 0:
             # We have unit propagation at level 0: we add these to the proof.
-            # See Section 3.5 of the pdf.
+            # See Section 4.5 of documentation.pdf.
 
             proof.add_to_proof(reason) 
             falsified_literals = [l for l in reason if l != popped_literal]
@@ -210,7 +210,7 @@ def backtrack(learned_clause,trail,watched_in_clauses,watched_literals,to_propag
         watched_in_clauses[watch2].append(learned_clause)
         
         backtrack_level = trail.level[watch2]
-        trail.backtrack(backtrack_level) # Now 'watch1' is implied by 'learned_clause' and it is the only implied clause.
+        trail.backtrack(backtrack_level) # After backtracking, 'watch1' is implied by 'learned_clause' and it is the only implied clause.
         to_propagate.clear()
         to_propagate.append((watch1,learned_clause))
 
@@ -227,7 +227,7 @@ def cdcl(clauses,silent=False):
     # We assume the literals are non-zero integers where negative integers represent negations of variables.   
     
     # We turn clauses to frozensets so we may use them as keys and to also remove duplicate literals.
-    # We also remove tautologies, i.e. clauses that contain some literal l and -l.
+    # As part of the preprocessing, we also remove tautologies, i.e. clauses that contain some literal l and -l.
     clauses = [frozenset(c) for c in clauses if not is_tautology(c)] 
     
     # Since we will use clauses as keys in the dictionary 'watched_literals' that gives the watched literals in a given clause,
@@ -240,7 +240,7 @@ def cdcl(clauses,silent=False):
     variables = list(set([abs(l) for c in clauses for l in c])) # all possible variables with the given clauses
     literals = variables + [-k for k in variables] # all possible literals with the given clauses
     watched_in_clauses = {l : [] for l in literals} # gives the list of clauses where a literal is watched
-    watched_literals = {} # Keys: clauses. Values: a 2-element list of the watched literals for that clause.
+    watched_literals = {} # Keys: clauses. Values: a 2-element list consisting of the watched literals in that clause.
     to_propagate = deque() # Whenever we either make a new decision or we find that a literal is implied by a clause, we add the literal here.
     # We use this as a queue, adding to the right, popping from the left.
     # The literals we add are annotated literals, which we implement as tuples (l,R),
@@ -267,7 +267,7 @@ def cdcl(clauses,silent=False):
         if falsified_clause != None:
             if trail.current_level == 0:
                 # We found a falsified clause at level 0: the formula is not satisfiable.
-                # We are now able to deduce the empty clause: see section 3.5 of the pdf
+                # We are now able to deduce the empty clause: see Section 4.5 documentation.pdf
                 proof.add_to_proof(falsified_clause) 
                 falsified_clause = list(falsified_clause)
 

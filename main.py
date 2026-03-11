@@ -129,14 +129,14 @@ def compute_tseitin_set(node,tseitin_set,subformula_labels):
         return
 
 
-def random_clauses(max_number_of_clauses,max_number_of_variables,min_size_of_clause,max_size_of_clause):
+def random_clauses(number_of_clauses,number_of_variables,min_size_of_clause,max_size_of_clause):
     # Random clauses used for testing
     clauses = []
-    for i in range(max_number_of_clauses):
+    for i in range(number_of_clauses):
         clause = []
         number_of_literals_in_clause = random.randrange(min_size_of_clause,max_size_of_clause +1)
         for j in range(number_of_literals_in_clause):
-            variable = random.randrange(1,max_number_of_variables+1)
+            variable = random.randrange(1,number_of_variables+1)
             sign = random.choice([-1,1])
             clause.append(sign * variable)
         
@@ -274,6 +274,7 @@ def print_scan_error(error,input_string):
     print("Scanning error!")
     print(error.message,'\n')
     print(input_string)
+    # Print where the error occurs
     for i in range(len(input_string)):
         if i == error.error_pos:
             print("^")
@@ -283,23 +284,32 @@ def print_scan_error(error,input_string):
 
 def run_tests():
     # Run CDCL with randomly generated CNF formulas.
-    test_number = 0
+    number_of_instances = 100
+    instances_solved = 0
     sats = 0
     unsats = 0
-    max_number_of_clauses = 1000
-    max_number_of_variables = 50
-    min_size_of_clause = 3 
+    number_of_clauses = 1000
+    number_of_variables = 50
+    min_size_of_clause = 3
     max_size_of_clause = 10
+    total_time = 0
 
-    while True:
-        test_number += 1
-        clauses = random_clauses(max_number_of_clauses,max_number_of_variables,min_size_of_clause,max_size_of_clause)
+    print(f"Solving {number_of_instances} random instances")
+    print(f"  Clauses: {number_of_clauses}, variables: {number_of_variables}, size of clauses: {min_size_of_clause}-{max_size_of_clause}")
+
+    while instances_solved < number_of_instances:
+        clauses = random_clauses(number_of_clauses,number_of_variables,min_size_of_clause,max_size_of_clause)
         sat, outcome, time = cdcl(clauses,silent=True)
+        total_time += time
+        instances_solved += 1
         if sat:
             sats += 1
         else:
             unsats += 1
-        print(f"  Tests: {test_number} Sats: {sats} Unsats: {unsats}",end='\r')
+        print(f"  Solved: {instances_solved}, Sats: {sats}, Unsats: {unsats}",end='\r')
+    
+    print()
+    print(f"  Total time spent solving: {total_time:.3f}s")
 
 
 def solve_cnf_file(file):
@@ -371,23 +381,37 @@ def solve_formula(input_string):
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 3:
-        print("Excpected two arguments after script name")
+
+    if len(sys.argv) < 2:
+        print("Missing argument: formula/cnf/sudoku")
         exit()
 
     mode = sys.argv[1]
     match mode:
         case 'sudoku':
+            if len(sys.argv) < 3:
+                print("Missing file as argument")
+                exit()
             file = sys.argv[2]
             solve_sudoku(file)
         
         case 'cnf':
+            if len(sys.argv) < 3:
+                print("Missing file as argument")
+                exit()
             file = sys.argv[2]
             solve_cnf_file(file)
 
         case 'formula':
+            if len(sys.argv) < 3:
+                print("Missing formula as argument")
+                exit()
             input_string = sys.argv[2]
             solve_formula(input_string)
+
+        case 'test':
+            # The test parameters can be adjusted in the 'run_test' function.
+            run_tests()
         
         case _:
             print(f"Unknown command: {mode}")

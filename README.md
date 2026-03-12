@@ -49,7 +49,7 @@ To solve a sudoku, run
 For example: `python3 main.py sudoku sudoku_example.txt`
 
 To test the solver with random instances, run
-`python main.py test`.
+`python3 main.py test`.
 The default test is to solve 100 random CNF formulas, where each instance has 1000 clauses, 50 variables and clauses have 3 to 10 literals.
 These settings can be changed in the source code.
 

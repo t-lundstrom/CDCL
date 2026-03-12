@@ -40,7 +40,7 @@ The tests were run on an M1 Macbook Air.
 To check the satisfiability of an arbitrary formula, run `python3 main.py formula '<formula>'` where `<formula>` is the given formula (see below for the syntax of formulas). 
 For example: `python3 main.py formula '(a -> b) & a -> b'`
 
-To check the satisfiability of a CNF (conjunctive normal form) formula given as a DIMACS CNF file, run 
+To check the satisfiability of a CNF formula given as a DIMACS CNF file, run 
 `python3 main.py cnf <file>` where `<file>` is the name of the file (see below for more about the file format). 
 For example: `python3 main.py cnf hole6.cnf`
 

@@ -28,10 +28,10 @@ The tests were run on an M1 Macbook Air.
 
 | Clauses | Variables | Total runtime for 100 instances           | SAT/UNSAT
 | --------|-----------|-------------------------------------------| --------------------------| 
-| 1000    | 50        | 8.022s                                    | 29 SAT, 71 UNSAT
-| 1100    | 55        | 19.759s                                   | 40 SAT, 60 UNSAT
-| 1200    | 60        | 36.087s                                   | 28 SAT, 72 UNSAT
-| 1300    | 65        | 68.127s                                   | 34 SAT, 66 UNSAT
+| 1000    | 50        | 8.482s                                    | 37 SAT, 63 UNSAT
+| 1100    | 55        | 17.916s                                   | 35 SAT, 65 UNSAT
+| 1200    | 60        | 33.807s                                   | 32 SAT, 68 UNSAT
+| 1300    | 65        | 58.966s                                   | 32 SAT, 68 UNSAT
 
 
 

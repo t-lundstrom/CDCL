@@ -226,6 +226,8 @@ def is_tautology(clause):
 def cdcl(clauses,silent=False):
     # We assume the literals are non-zero integers where negative integers represent negations of variables.   
     
+    start = time() 
+    
     # We turn clauses to frozensets so we may use them as keys and to also remove duplicate literals.
     # As part of the preprocessing, we also remove tautologies, i.e. clauses that contain some literal l and -l.
     clauses = [frozenset(c) for c in clauses if not is_tautology(c)] 
@@ -250,7 +252,6 @@ def cdcl(clauses,silent=False):
     if not silent:
         print(f"Starting CDCL with {len(variables)} variables and {len(clauses)} clauses")
     
-    start = time()
 
     # Setting watched literals
     # If 'init_watched_literals' finds an empty clause, we can report that the formula is not sat.

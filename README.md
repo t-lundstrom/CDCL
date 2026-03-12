@@ -10,7 +10,7 @@ The file `documentation.pdf` gives a more detailed explanation of the theoretica
 
 # Features
 Implemented features of the CDCL algorithm:
-- Unit propagation with [2-watched literals](https://www.youtube.com/watch?v=n3e-f0vMHz8)
+- Unit propagation with 2-watched literals
 - 1-UIP clause learning
 - non-chronological backtracking
 - a resolution proof engine

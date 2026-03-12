@@ -6,7 +6,7 @@ For parsing logical formulas, the project also implements a [recursive descent p
 In addition to checking if a given formula is satisfiable, the CDCL solver also builds a [resolution proof](https://en.wikipedia.org/wiki/Resolution_(logic)) if the formula is not satisfiable.
 As an application of the SAT-solver, the project includes a Sudoku solver.
 
-The file `documentation.pdf` gives a more detailed explanation of the theoretical background and implementation details of the CDCL algorithm that we implement here.
+The file `documentation.pdf` provides a more detailed explanation of the theoretical background and implementation details of the CDCL algorithm that we implement here.
 
 # Features
 Implemented features of the CDCL algorithm:

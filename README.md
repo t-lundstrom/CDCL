@@ -167,7 +167,7 @@ The comment `Res(i,j,k)` means that the clause on that line is obtained by resol
 
 If the input formula has atomic formulas `T` or `F` as subformulas, these subformulas are not given labels and hence appear as such in the Tseitin set.
 Before running the CDCL algorithm, as preprocessing, we remove all clauses with `T` in them and remove `F` from every clause.
-In addition, we remove duplicate literals from clauses, we remove duplicate clauses, and we remove all tautological clauses, which are clauses that contain some literal and its negation.
+In addition, we remove duplicate literals from clauses, duplicate clauses, and all tautological clauses, which are clauses that contain some literal and its negation.
 The resolution proof is computed from this preprocessed set of clauses.
 
 Similarly, when a `.cnf` or a sudoku file is given and the formula/sudoku is not satisfiable, a prompt asks if the user wants to see the resolution proof.

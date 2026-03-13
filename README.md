@@ -1,5 +1,5 @@
 # About
-This is a personal learning project where I implemented a [CDCL](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning) based [SAT solver](https://en.wikipedia.org/wiki/SAT_solver) from scratch in Python. 
+This is a personal learning project where I implemented a [CDCL](https://en.wikipedia.org/wiki/Conflict-driven_clause_learning) based [SAT solver](https://en.wikipedia.org/wiki/SAT_solver) with a resolution proof engine from scratch in Python. 
 The goal was to understand how modern SAT solvers work and to learn how to implement them.
 
 For parsing logical formulas, the project also implements a [recursive descent parser](https://www.cs.rochester.edu/u/nelson/courses/csc_173/grammars/parsing.html) for propositional logic. 

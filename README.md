@@ -8,6 +8,8 @@ As an application of the SAT-solver, the project includes a Sudoku solver.
 
 The file `documentation.pdf` provides a more detailed explanation of the theoretical background and implementation details of the CDCL algorithm that we implement here.
 
+This project was written 100% by hand.
+
 # Features
 Implemented features of the CDCL algorithm:
 - Unit propagation with 2-watched literals

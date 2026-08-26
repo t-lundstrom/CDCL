@@ -60,7 +60,7 @@ These settings can be changed in the source code.
 If the given files does not follow the assumed format, unexpected behaviour might occur.
 
 # Installing/Running
-Download all files into the same directory and run your Python interpreter with arguments as shown above. The only dependency is the standard Python library.
+Download all files into the same directory and run your Python 3 interpreter with arguments as shown above. The only dependency is the standard Python library.
 
 # Syntax of formulas
 When giving propositional formulas as input, the following syntax is assumed.
